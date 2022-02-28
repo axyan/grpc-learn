@@ -1,0 +1,21 @@
+syntax = "proto3";
+package token;
+
+option go_package = "/grpc";
+
+service Token {
+  rpc Generate(TokenRequest) returns (TokenString) {}
+  rpc Validate(TokenString) returns (ParsedToken) {}
+}
+
+message TokenRequest {
+  string id = 1; 
+}
+
+message TokenString {
+  string token = 1;
+}
+
+message ParsedToken {
+  bool valid = 1;
+}
